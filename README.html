@@ -1,0 +1,696 @@
+<!DOCTYPE html>  
+<html lang="zh-CN">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>UTF-8编码示例</title>  
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true})</script>
+    <link rel="stylesheet" href="../Static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 可以在这里添加其他元数据和CSS链接 -->  
+</head>  
+<body>
+    <div class="toc">
+    <ul>
+    <li><a href="#crossdown">CrossDown</a></li>
+    <li><a href="#1">1 基本语法</a><ul>
+    <li><a href="#1.1">1.1 标题</a></li>
+    </ul>
+    </li>
+    <li><a href="#_1">一级标题</a><ul>
+    <li><a href="#_2">二级标题</a><ul>
+    <li><a href="#_3">三级标题</a><ul>
+    <li><a href="#_4">四级标题</a><ul>
+    <li><a href="#_5">五级标题</a><ul>
+    <li><a href="#_6">六级标题</a></li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li><a href="#1.2">1.2 样式</a><ul>
+    <li><a href="#1.2.1">1.2.1 斜体</a></li>
+    <li><a href="#1.2.2">1.2.2 粗体</a></li>
+    <li><a href="#1.2.3">1.2.3 粗斜体</a></li>
+    <li><a href="#1.2.4">1.2.4 下标</a></li>
+    <li><a href="#1.2.5">1.2.5 删除线</a></li>
+    <li><a href="#1.2.6">1.2.6 高亮</a></li>
+    <li><a href="#1.2.7">1.2.7 在文本的正上方添加一行小文本主要用于标拼音</a></li>
+    <li><a href="#1.2.8">1.2.8 在指定的文本里面隐藏一段文本</a></li>
+    <li><a href="#1.2.9">1.2.9 分割线</a></li>
+    <li><a href="#1.2.10">1.2.10 上标</a></li>
+    <li><a href="#1.2.11">1.2.11 下划线</a></li>
+    </ul>
+    </li>
+    <li><a href="#1.3">1.3 链接</a><ul>
+    <li><a href="#1.3.1">1.3.1 普通链接</a></li>
+    <li><a href="#1.3.2">1.3.2 图片</a></li>
+    <li><a href="#1.3.3">1.3.3 变量链接</a></li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li><a href="#2">2 缩写</a><ul>
+    <li><a href="#2.1">2.1 定义</a></li>
+    <li><a href="#2.2">2.2 赋值</a></li>
+    </ul>
+    </li>
+    <li><a href="#3">3 锚点</a><ul>
+    <li><a href="#3.1">3.1 定义</a></li>
+    <li><a href="#3.2">3.2 链接</a></li>
+    </ul>
+    </li>
+    <li><a href="#4">4 代码块</a><ul>
+    <li><a href="#4.1">4.1 单行</a><ul>
+    <li><a href="#4.1.1">4.1.1 LaTex</a></li>
+    <li><a href="#4.1.2">4.1.2 函数</a></li>
+    <li><a href="#4.1.3">4.1.3 按键风格</a></li>
+    <li><a href="#4.1.4">4.1.4 突出</a></li>
+    </ul>
+    </li>
+    <li><a href="#4.2">4.2 多行</a><ul>
+    <li><a href="#4.2.1">4.2.1 YAML</a></li>
+    <li><a href="#4.2.2">4.2.2 Python</a></li>
+    <li><a href="#4.2.3">4.2.3 Mermaid</a></li>
+    <li><a href="#4.2.4">4.2.4 shell</a></li>
+    <li><a href="#4.2.5">4.2.5 latex</a></li>
+    <li><a href="#4.2.6">4.2.6 HTML</a></li>
+    <li><a href="#4.2.7">4.2.7 未知语言</a></li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li><a href="#5">5 对话</a></li>
+    <li><a href="#6">6 引用</a></li>
+    <li><a href="#7">7 提纲</a><ul>
+    <li><a href="#7.1">7.1 提纲号</a><ul>
+    <li><a href="#7.1.1">7.1.1 提纲号示例</a></li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li><a href="#8">8 注释</a></li>
+    <li><a href="#9">9 列表</a><ul>
+    <li><a href="#9.1">9.1 有序列表</a></li>
+    <li><a href="#9.2">9.2 无序列表</a></li>
+    <li><a href="#9.3">9.3 释义列表</a></li>
+    <li><a href="#9.4">9.4 任务列表</a></li>
+    <li><a href="#9.5">9.5 高级列表</a></li>
+    </ul>
+    </li>
+    <li><a href="#10">10 表格</a></li>
+    <li><a href="#11">11 警告</a></li>
+    <li><a href="#12">12 符号</a><ul>
+    <li><a href="#12.1">12.1 Emoji</a></li>
+    <li><a href="#12.2">12.2 高级符号</a></li>
+    </ul>
+    </li>
+    <li><a href="#13">13 脚注</a><ul>
+    <li><a href="#13.1">13.1 使用</a></li>
+    <li><a href="#13.2">13.2 定义</a></li>
+    <li><a href="#13.3">13.3 放置</a></li>
+    </ul>
+    </li>
+    <li><a href="#14">14 进度条</a><ul>
+    <li><a href="#14.1">14.1 普通</a></li>
+    <li><a href="#14.2">14.2 带属性</a></li>
+    </ul>
+    </li>
+    <li><a href="#15">15 内部链接</a></li>
+    <li><a href="#16">16 变量</a></li>
+    <li><a href="#17">17 属性设置</a></li>
+    <li><a href="#18">18 超级块</a><ul>
+    <li><a href="#18.1">18.1 警告</a></li>
+    <li><a href="#18.2">18.2 定义列表</a></li>
+    <li><a href="#18.3">18.3 详情</a></li>
+    <li><a href="#18.4">18.4 HTML</a></li>
+    <li><a href="#18.5">18.5 标签</a></li>
+    </ul>
+    </li>
+    <li><a href="#19">19 批评</a></li>
+    <li><a href="#20">20 警告</a><ul>
+    <li><a href="#20.1">20.1 告示</a></li>
+    <li><a href="#20.2">20.2 提示</a></li>
+    <li><a href="#20.3">20.3 着重</a></li>
+    <li><a href="#20.4">20.4 提醒</a></li>
+    <li><a href="#20.5">20.5 警告</a></li>
+    </ul>
+    </li>
+    <li><a href="#21">21 嵌套</a></li>
+    <li><a href="#_7">嵌套</a></li>
+    </ul>
+    </div>
+    <h1 id="crossdown">CrossDown</h1>
+    <p>自制的markdown,添加了一些自定义的语法</p>
+    <p>效果请见<kbd>README.html</kbd></p>
+    <p>安装:<code class="highlight">pip3<span class="w"> </span>install<span class="w"> </span>--index-url<span class="w"> </span>https://crossdark.net/api/packages/CrossDark/pypi/simple/<span class="w"> </span>CrossDown</code></p>
+    <h1 id="1">1 基本语法</h1>
+    <h2 id="1.1">1.1 标题</h2>
+    <h1 id="_1">一级标题</h1>
+    <h2 id="_2">二级标题</h2>
+    <h3 id="_3">三级标题</h3>
+    <h4 id="_4">四级标题</h4>
+    <h5 id="_5">五级标题</h5>
+    <h6 id="_6">六级标题</h6>
+    <h2 id="1.2">1.2 样式</h2>
+    <h3 id="1.2.1">1.2.1 <em>斜体</em></h3>
+    <h3 id="1.2.2">1.2.2 <strong>粗体</strong></h3>
+    <h3 id="1.2.3">1.2.3 <strong><em>粗斜体</em></strong></h3>
+    <h3 id="1.2.4">1.2.4 <sub>下标</sub></h3>
+    <h3 id="1.2.5">1.2.5 <del>删除线</del></h3>
+    <h3 id="1.2.6">1.2.6 <mark>高亮</mark></h3>
+    <h3 id="1.2.7">1.2.7 <ruby>在文本的正上方添加一行小文本<rt>主要用于标拼音</rt></ruby></h3>
+    <h3 id="1.2.8">1.2.8 <span title="只有鼠标放在上面才会显示隐藏文本">在指定的文本里面隐藏一段文本</span></h3>
+    <h3 id="1.2.9">1.2.9 分割线</h3>
+    <hr />
+    <hr />
+    <hr />
+    <h3 id="1.2.10">1.2.10 <sup>上标</sup></h3>
+    <h3 id="1.2.11">1.2.11 <ins>下划线</ins></h3>
+    <h2 id="1.3">1.3 链接</h2>
+    <h3 id="1.3.1">1.3.1 普通链接</h3>
+    <p><a href="链接地址">链接文本</a></p>
+    <p><a href="https://crossdark.com">CrossDark</a></p>
+    <p><a href="https://crossdark.net/">https://crossdark.net/</a></p>
+    <p><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#105;&#117;&#104;&#97;&#110;&#98;&#111;&#51;&#51;&#51;&#64;&#105;&#99;&#108;&#111;&#117;&#100;&#46;&#99;&#111;&#109;">&#108;&#105;&#117;&#104;&#97;&#110;&#98;&#111;&#51;&#51;&#51;&#64;&#105;&#99;&#108;&#111;&#117;&#100;&#46;&#99;&#111;&#109;</a></p>
+    <h3 id="1.3.2">1.3.2 图片</h3>
+    <p><img alt="链接图片" src="链接地址" /></p>
+    <p><img alt="sea" src="https://crossdark.com/wp-content/uploads/2024/05/1715259682-sea.jpg" /></p>
+    <h3 id="1.3.3">1.3.3 变量链接</h3>
+    <p><a href="https://crossdark.com">链接文本</a></p>
+    <h1 id="2">2 <abbr title="长的文本">缩写</abbr></h1>
+    <h2 id="2.1">2.1 定义</h2>
+    <h2 id="2.2">2.2 赋值</h2>
+    <p>直接在文本中使用 <abbr title="长的文本">缩写</abbr> 即可</p>
+    <h1 id="3">3 锚点</h1>
+    <h2 id="3.1">3.1 定义</h2>
+    <p><span id="锚点">锚点</span></p>
+    <h2 id="3.2">3.2 链接</h2>
+    <p><a href=#锚点>锚点</a></p>
+    <h1 id="4">4 代码块</h1>
+    <h2 id="4.1">4.1 <code id="block">单行</code></h2>
+    <p>Here is some code: <code class="highlight"><span class="kn">import</span> <span class="nn">pymdownx</span><span class="p">;</span> <span class="n">pymdownx</span><span class="o">.</span><span class="n">__version__</span></code>.</p>
+    <p>The mock shebang will be treated like text here: <span id="!js var test = 0;">!js var test = 0;</span>.</p>
+    <h3 id="4.1.1">4.1.1 LaTex</h3>
+    <p>这是<span class="arithmatex"><span class="MathJax_Preview">CO_2</span><script type="math/tex">CO_2</script></span>二氧化碳,或者可以写成这样CO<sub>2</sub></p>
+    <p>这是<span class="arithmatex"><span class="MathJax_Preview">H_2O</span><script type="math/tex">H_2O</script></span>水,或者写成H<sub>2</sub>O
+    <sup>3</sup>H<sub>2</sub>O</p>
+    <p><span class="arithmatex"><span class="MathJax_Preview">\lg\left(\frac{目标生物的理智值}{稳定折磨型工具人的理智值}\right)</span><script type="math/tex">\lg\left(\frac{目标生物的理智值}{稳定折磨型工具人的理智值}\right)</script></span></p>
+    <h3 id="4.1.2">4.1.2 函数</h3>
+    <p><code id="block">¥y=x*2+1¥</code>  // 不定义范围</p>
+    <p><code id="block">¥y=x**2¥€-50,50€</code>  // 定义了x范围</p>
+    <p><code id="block">¥y=x**3¥€-50,50|-100,100€</code>  // 定义了y范围</p>
+    <h3 id="4.1.3">4.1.3 按键风格</h3>
+    <p><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-alt">Alt</kbd><span>+</span><kbd class="key-delete">Del</kbd></span></p>
+    <p><kbd>Enter</kbd></p>
+    <h3 id="4.1.4">4.1.4 突出</h3>
+    <p><code id="block">突出内容</code></p>
+    <h2 id="4.2">4.2 多行</h2>
+    <h3 id="4.2.1">4.2.1 YAML</h3>
+    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2</span>
+    <span class="normal">3</span>
+    <span class="normal">4</span>
+    <span class="normal">5</span>
+    <span class="normal">6</span>
+    <span class="normal">7</span>
+    <span class="normal">8</span>
+    <span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="nt">A</span><span class="p">:</span>
+    </span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">1. a</span>
+    <span class="hll"><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">2. b</span>
+    </span><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">3. c</span>
+    <span class="nt">B</span><span class="p">:</span>
+    <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+    <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+    <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span>
+    </code></pre></div></td></tr></table></div>
+    <h3 id="4.2.2">4.2.2 Python</h3>
+    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+    <span class="normal">2</span>
+    <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="ch">#! usr/bin/python3.11</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CrossDown&#39;</span><span class="p">)</span>
+    </code></pre></div></td></tr></table></div>
+    <h3 id="4.2.3">4.2.3 Mermaid</h3>
+    <div class="mermaid">graph TD  
+        A[开始]--&gt;B[流程]  
+        B--&gt;C{判断}  
+        C--&gt;|结果1|D[结束1]  
+        C--&gt;|结果2|E[结束2]</div>
+    <h3 id="4.2.4">4.2.4 shell</h3>
+    <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>../..
+    ls
+    </code></pre></div>
+    <h3 id="4.2.5">4.2.5 latex</h3>
+    <div class="arithmatex">
+    <div class="MathJax_Preview">
+    E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c_j h_j
+    </div>
+    <script type="math/tex; mode=display">
+    E(\mathbf{v}, \mathbf{h}) = -\sum_{i,j}w_{ij}v_i h_j - \sum_i b_i v_i - \sum_j c_j h_j
+    </script>
+    </div>
+    <div class="arithmatex">
+    <div class="MathJax_Preview">3 &lt; 4</div>
+    <script type="math/tex; mode=display">3 < 4</script>
+    </div>
+    <div class="arithmatex">
+    <div class="MathJax_Preview">\begin{align}
+        p(v_i=1|\mathbf{h}) &amp; = \sigma\left(\sum_j w_{ij}h_j + b_i\right) \\
+        p(h_j=1|\mathbf{v}) &amp; = \sigma\left(\sum_i w_{ij}v_i + c_j\right)
+    \end{align}</div>
+    <script type="math/tex; mode=display">\begin{align}
+        p(v_i=1|\mathbf{h}) & = \sigma\left(\sum_j w_{ij}h_j + b_i\right) \\
+        p(h_j=1|\mathbf{v}) & = \sigma\left(\sum_i w_{ij}v_i + c_j\right)
+    \end{align}</script>
+    </div>
+    <p>行内公式: <span class="arithmatex"><span class="MathJax_Preview">p(x|y) = \frac{p(y|x)p(x)}{p(y)}</span><script type="math/tex">p(x|y) = \frac{p(y|x)p(x)}{p(y)}</script></span></p>
+    <h3 id="4.2.6">4.2.6 HTML</h3>
+    <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="cm">&lt;!--头部--&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>标题<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+    </code></pre></div>
+    <h3 id="4.2.7">4.2.7 未知语言</h3>
+    <div class="highlight"><pre><span></span><code>#! usr/bin/python3.11
+    def main():
+        print(&#39;CrossDown&#39;)
+    `#!py3 print(&#39;cd&#39;)`
+    </code></pre></div>
+    <h1 id="5">5 对话</h1>
+    <div>
+    <div class="message-title"></div>
+    <div class="dialog-container">
+    <div class="dialog-row">
+    <div class="user-name left">左侧</div>
+    <div class="message-content">话语</div>
+    <div class="user-name "></div>
+    </div>
+    <div class="dialog-row">
+    <div class="user-name "></div>
+    <div class="message-content">话语</div>
+    <div class="user-name right">右侧</div>
+    </div>
+    <div class="dialog-row">
+    <div class="user-name left">左侧</div>
+    <div class="message-content">
+    <p class="thought">心理</p>
+    </div>
+    <div class="user-name "></div>
+    </div>
+    <div class="dialog-row">
+    <div class="user-name "></div>
+    <div class="message-content">
+    <p class="thought">心理</p>
+    </div>
+    <div class="user-name right">右侧</div>
+    </div>
+    <div class="dialog-row">
+    <div class="user-name "></div>
+    <div class="message-content"><em>旁白</em></div>
+    <div class="user-name "></div>
+    </div>
+    <div class="dialog-row">
+    <div class="user-name left"><code id="block">角色</code></div>
+    <div class="message-content"><code id="block">台词</code></div>
+    <div class="user-name "></div>
+    </div>
+    </div>
+    <br />
+    </div>
+    <h1 id="6">6 引用</h1>
+    <blockquote>
+    <p>一级引用</p>
+    <blockquote>
+    <p>二级引用</p>
+    <blockquote>
+    <p>三级引用</p>
+    <blockquote>
+    <p>四级引用</p>
+    <blockquote>
+    <p>五级引用</p>
+    <blockquote>
+    <p>六级引用</p>
+    </blockquote>
+    </blockquote>
+    </blockquote>
+    </blockquote>
+    </blockquote>
+    <p>引文内添加<em>斜体</em><strong>粗体</strong><del>删除线</del><mark>高亮</mark> <sup>上标</sup> <sub>下标</sub> <ins>下划线</ins> <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-alt">Alt</kbd><span>+</span><kbd class="key-delete">Del</kbd></span> &copy; <img alt="😄" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f604.png" title=":smile:" /></p>
+    </blockquote>
+    <h1 id="7">7 提纲</h1>
+    <h2 id="7.1">7.1 提纲号</h2>
+    <p>以数字和点组成,通过空格与提纲名分隔,例如:</p>
+    <h3 id="7.1.1">7.1.1 提纲号示例</h3>
+    <p>点不能出现在开头或结尾,例如</p>
+    <p>.7.1.2 错误示范</p>
+    <p>7.1.3. 错误示范</p>
+    <p>不能出现两个及以上连续的点,例如:</p>
+    <p>7..1...4 错误示范</p>
+    <p>提纲号会被自动配置为锚点,可直接使用<a href=#7>7</a> <a href=#7.1>7.1</a> <em>这种情况中间必须有间隔</em></p>
+    <h1 id="8">8 注释</h1>
+    <!-- 这是注释 -->
+    
+    <!--
+    可以多行
+    -->
+    
+    <h1 id="9">9 列表</h1>
+    <h2 id="9.1">9.1 有序列表</h2>
+    <ol type="1">
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+    <li>d</li>
+    </ol>
+    <h2 id="9.2">9.2 无序列表</h2>
+    <ul>
+    <li>A</li>
+    <li>B</li>
+    <li>C</li>
+    <li>D</li>
+    </ul>
+    <h2 id="9.3">9.3 释义列表</h2>
+    <dl>
+    <dt>A</dt>
+    <dd>
+    <ol type="1">
+    <li>a  </li>
+    <li>b  </li>
+    <li>c  </li>
+    </ol>
+    </dd>
+    <dt>B</dt>
+    <dd>
+    <ul>
+    <li>a  </li>
+    <li>b  </li>
+    <li>c</li>
+    </ul>
+    </dd>
+    <dt><code id="block">强调值</code></dt>
+    <dd>
+    <ul>
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+    </ul>
+    </dd>
+    <dt>Apple</dt>
+    <dd>Pomaceous fruit of plants of the genus Malus in
+    the family Rosaceae.</dd>
+    <dt>Orange</dt>
+    <dd>The fruit of an evergreen tree of the genus Citrus.</dd>
+    </dl>
+    <h2 id="9.4">9.4 任务列表</h2>
+    <p>Task List</p>
+    <ul class="task-list">
+    <li class="task-list-item"><input type="checkbox" checked/> item 1<ul class="task-list">
+    <li class="task-list-item"><input type="checkbox" checked/> item A</li>
+    <li class="task-list-item"><input type="checkbox"/> item B
+        more text<ul class="task-list">
+    <li class="task-list-item"><input type="checkbox" checked/> item a</li>
+    <li class="task-list-item"><input type="checkbox"/> item b</li>
+    <li class="task-list-item"><input type="checkbox" checked/> item c</li>
+    </ul>
+    </li>
+    <li class="task-list-item"><input type="checkbox" checked/> item C</li>
+    </ul>
+    </li>
+    <li class="task-list-item"><input type="checkbox"/> item 2</li>
+    <li class="task-list-item"><input type="checkbox"/> item 3</li>
+    </ul>
+    <h2 id="9.5">9.5 高级列表</h2>
+    <ol type="1">
+    <li>Item 1</li>
+    <li>Item 2<ol type="i">
+    <li>Item 1</li>
+    <li>Item 2<ol type="a">
+    <li>Item a</li>
+    <li>Item b<ol type="1">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    </ol>
+    </li>
+    </ol>
+    </li>
+    </ol>
+    </li>
+    </ol>
+    <h1 id="10">10 表格</h1>
+    <table>
+    <thead>
+    <tr>
+    <th style="text-align: center;">表头1</th>
+    <th style="text-align: center;">表头2</th>
+    <th style="text-align: center;">表头3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td style="text-align: center;">单元格1</td>
+    <td style="text-align: center;">单元格2</td>
+    <td style="text-align: center;">单元格3</td>
+    </tr>
+    <tr>
+    <td style="text-align: center;">单元格4</td>
+    <td style="text-align: center;">单元格5</td>
+    <td style="text-align: center;">单元格6</td>
+    </tr>
+    </tbody>
+    </table>
+    <h1 id="11">11 警告</h1>
+    <p>!!! warning "警告标题"
+        警告内容</p>
+    <h1 id="12">12 符号</h1>
+    <h2 id="12.1">12.1 Emoji</h2>
+    <p><img alt="😄" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f604.png" title=":smile:" /> <img alt="❤️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/2764.png" title=":heart:" /> <img alt="👍" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f44d.png" title=":thumbsup:" /></p>
+    <p>这是一个笑脸 <img alt="😄" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f604.png" title=":smile:" /> 图案</p>
+    <h2 id="12.2">12.2 高级符号</h2>
+    <p>&trade;
+    &copy;
+    &reg;
+    &#8453;
+    &plusmn;
+    &rarr;
+    &larr;
+    &harr;
+    &ne;
+    &frac14; 等</p>
+    <h1 id="13">13 脚注</h1>
+    <h2 id="13.1">13.1 使用</h2>
+    <p>这是一个<sup id="fnref:脚注"><a class="footnote-ref" href="#fn:脚注">1</a></sup></p>
+    <h2 id="13.2">13.2 定义</h2>
+    <h2 id="13.3">13.3 放置</h2>
+    <p>通过一下代码可以将文章中所有的脚注定义集中于一处</p>
+    <div class="footnote">
+    <hr />
+    <ol>
+    <li id="fn:脚注">
+    <p>一段长的文本用于说明&#160;<a class="footnote-backref" href="#fnref:脚注" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+    </li>
+    </ol>
+    </div>
+    <p>否则所有定义将被集中在文章末尾</p>
+    <h1 id="14">14 进度条</h1>
+    <h2 id="14.1">14.1 普通</h2>
+    <p>
+    <div class="progress progress-0plus">
+    <div class="progress-bar" style="width:0.00%">
+    <p class="progress-label">0%</p>
+    </div>
+    </div>
+    <div class="progress progress-0plus">
+    <div class="progress-bar" style="width:5.00%">
+    <p class="progress-label">5%</p>
+    </div>
+    </div>
+    <div class="progress progress-20plus">
+    <div class="progress-bar" style="width:25.00%">
+    <p class="progress-label">25%</p>
+    </div>
+    </div>
+    <div class="progress progress-40plus">
+    <div class="progress-bar" style="width:45.00%">
+    <p class="progress-label">45%</p>
+    </div>
+    </div>
+    <div class="progress progress-60plus">
+    <div class="progress-bar" style="width:65.00%">
+    <p class="progress-label">65%</p>
+    </div>
+    </div>
+    <div class="progress progress-80plus">
+    <div class="progress-bar" style="width:85.00%">
+    <p class="progress-label">85%</p>
+    </div>
+    </div>
+    <div class="progress progress-100plus">
+    <div class="progress-bar" style="width:100.00%">
+    <p class="progress-label">100%</p>
+    </div>
+    </div>
+    </p>
+    <h2 id="14.2">14.2 带属性</h2>
+    <p>
+    <div class="progress progress-80plus candystripe">
+    <div class="progress-bar" style="width:85.00%">
+    <p class="progress-label">85%</p>
+    </div>
+    </div>
+    <div class="progress progress-100plus candystripe candystripe-animate">
+    <div class="progress-bar" style="width:100.00%">
+    <p class="progress-label">100%</p>
+    </div>
+    </div>
+    </p>
+    <p>
+    <div class="progress progress-0plus thin">
+    <div class="progress-bar" style="width:0.00%">
+    <p class="progress-label"></p>
+    </div>
+    </div>
+    <div class="progress progress-0plus thin">
+    <div class="progress-bar" style="width:5.00%">
+    <p class="progress-label"></p>
+    </div>
+    </div>
+    <div class="progress progress-20plus thin">
+    <div class="progress-bar" style="width:25.00%">
+    <p class="progress-label"></p>
+    </div>
+    </div>
+    <div class="progress progress-40plus thin">
+    <div class="progress-bar" style="width:45.00%">
+    <p class="progress-label"></p>
+    </div>
+    </div>
+    <div class="progress progress-60plus thin">
+    <div class="progress-bar" style="width:65.00%">
+    <p class="progress-label"></p>
+    </div>
+    </div>
+    <div class="progress progress-80plus thin">
+    <div class="progress-bar" style="width:85.00%">
+    <p class="progress-label"></p>
+    </div>
+    </div>
+    <div class="progress progress-100plus thin">
+    <div class="progress-bar" style="width:100.00%">
+    <p class="progress-label"></p>
+    </div>
+    </div>
+    </p>
+    <h1 id="15">15 内部链接</h1>
+    <p><kbd>Bracketed</kbd></p>
+    <h1 id="16">16 变量</h1>
+    <p>{[强调变量]}</p>
+    <h1 id="17">17 属性设置</h1>
+    <p style="font-family: sans-serif;">可以设置文段的字体为sans-serif</p>
+    <p style="font-family: Helvetica;">可以设置文段的字体为Helvetica</p>
+    <p style="font-family: SetoFont;">可以设置文段的自定义字体为小赖字体</p>
+    <p style="display: inline-block; border: 1px solid yellow;">可以设置文本的黄色外框</p>
+    <h1 id="18">18 超级块</h1>
+    <h2 id="18.1">18.1 警告</h2>
+    <div class="admonition note">
+    <p class="admonition-title">Did you know?</p>
+    <p>You can create a note with Blocks!</p>
+    </div>
+    <h2 id="18.2">18.2 定义列表</h2>
+    <p>/// define
+    Apple</p>
+    <ul>
+    <li>Pomaceous fruit of plants of the genus Malus in
+      the family Rosaceae.</li>
+    </ul>
+    <p>///</p>
+    <h2 id="18.3">18.3 详情</h2>
+    <details class="warning">
+    <summary>Some summary</summary>
+    <p>Some content</p>
+    </details>
+    <h2 id="18.4">18.4 HTML</h2>
+    <div style="border: 1px solid red;">
+    <p>some <em>markdown</em> content</p>
+    </div>
+    <h2 id="18.5">18.5 标签</h2>
+    <div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Tab A title</label><div class="tabbed-content">
+    <p>Tab A content</p>
+    </div>
+    <input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Tab B title</label><div class="tabbed-content">
+    <p>Tab B content</p>
+    </div>
+    </div>
+    <div class="tabbed-set" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Tab C Title</label><div class="tabbed-content">
+    <p>Will be part of a separate, new tab group.</p>
+    </div>
+    </div>
+    <h1 id="19">19 批评</h1>
+    <p>Here is some <del class="critic"><em>incorrect</em></del> Markdown.  I am adding this<ins class="critic"> here</ins>.  Here is some more <del class="critic">text
+     that I am removing</del>text.  And here is even more <ins class="critic">text that I 
+     am </ins>adding.<del class="critic break">&nbsp;</del><ins class="critic">  </ins>Paragraph was deleted and replaced with some spaces.<del class="critic">  </del></p>
+    <ins class="critic break">&nbsp;</ins>
+    <p>Spaces were removed and a paragraph was added.</p>
+    <p>And here is a comment on <mark class="critic">some
+     text</mark><span class="critic comment">This works quite well. I just wanted to comment on it.</span>. Substitutions <del class="critic">is</del><ins class="critic">are</ins> great!</p>
+    <p>General block handling.</p>
+    <del class="critic block">
+    <ul>
+    <li>test remove</li>
+    <li>test remove</li>
+    <li>test remove<ul>
+    <li>test remove</li>
+    </ul>
+    </li>
+    <li>test remove</li>
+    </ul>
+    </del>
+    <ins class="critic block">
+    <ul>
+    <li>test add</li>
+    <li>test add</li>
+    <li>test add<ul>
+    <li>test add</li>
+    </ul>
+    </li>
+    <li>test add</li>
+    </ul>
+    </ins>
+    <h1 id="20">20 警告</h1>
+    <h2 id="20.1">20.1 告示</h2>
+    <div class="admonition note">
+    <p class="admonition-title">Note</p>
+    <p>突出用户应考虑的信息</p>
+    </div>
+    <h2 id="20.2">20.2 提示</h2>
+    <div class="admonition tip">
+    <p class="admonition-title">Tip</p>
+    <p>帮助用户的可选信息</p>
+    </div>
+    <h2 id="20.3">20.3 着重</h2>
+    <div class="admonition important">
+    <p class="admonition-title">Important</p>
+    <p>Crucial information necessary for users to succeed.</p>
+    </div>
+    <h2 id="20.4">20.4 提醒</h2>
+    <div class="admonition warning">
+    <p class="admonition-title">Warning</p>
+    <p>Critical content demanding immediate user attention due to potential risks.</p>
+    </div>
+    <h2 id="20.5">20.5 警告</h2>
+    <div class="admonition caution">
+    <p class="admonition-title">Caution</p>
+    <p>Negative potential consequences of an action.</p>
+    </div>
+    <h1 id="21">21 嵌套</h1>
+    <h1 id="_7">嵌套</h1>
+    <p>嵌套的内容</p>
+    <p>支持</p>
+</body>  
+</html>
